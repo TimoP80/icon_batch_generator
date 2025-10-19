@@ -66,14 +66,14 @@ const IconGeneratorForm: React.FC<IconGeneratorFormProps> = ({ onGenerate, isLoa
           <label className="block text-sm font-medium text-content-100 mb-2">
             Batch Size
           </label>
-          <div className="flex space-x-2 h-full items-center">
+          <div className="flex space-x-2">
             {batchSizes.map((size) => (
               <button
                 key={size}
                 type="button"
                 onClick={() => setBatchSize(size)}
                 disabled={isLoading}
-                className={`flex-1 py-2 px-4 rounded-md text-sm font-semibold transition duration-200 h-full ${
+                className={`flex-1 py-2 px-4 rounded-md text-sm font-semibold transition duration-200 ${
                   batchSize === size
                     ? 'bg-gradient-to-r from-brand-primary to-brand-secondary text-white shadow-md ring-2 ring-offset-2 ring-offset-base-200 ring-brand-primary'
                     : 'bg-base-300 text-content-100 hover:bg-base-100'
