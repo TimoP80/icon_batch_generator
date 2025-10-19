@@ -1,0 +1,5 @@
+{
+  "name": "Icon Batch Generator",
+  "description": "An application to batch generate application icons using AI, providing a vast library of choices for designers and developers.",
+  "requestFramePermissions": []
+}
