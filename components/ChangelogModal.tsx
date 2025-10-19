@@ -2,6 +2,14 @@ import React from 'react';
 
 export const changelogData = [
     {
+    version: 'v1.6.0',
+    date: 'October 22, 2025',
+    changes: [
+      'Fixed a critical bug where the application failed to load, resulting in a blank screen.',
+      'Ensured the main application script is correctly loaded in `index.html` to enable UI rendering.',
+    ],
+  },
+    {
     version: 'v1.5.0',
     date: 'October 21, 2025',
     changes: [
