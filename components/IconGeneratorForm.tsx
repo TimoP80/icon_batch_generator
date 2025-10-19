@@ -17,6 +17,16 @@ const styles = [
   { key: 'isometric', name: 'Isometric' },
 ];
 
+const examplePrompts = [
+  'A cute, smiling robot mascot for a tech startup',
+  'Minimalist mountain range logo for an adventure app',
+  'Vibrant, abstract paint splash icon for a design tool',
+  'A friendly cartoon owl for an educational app',
+  'Sleek, futuristic spaceship for a sci-fi game',
+  'A simple, green leaf icon for an eco-friendly product',
+  'A magnifying glass over a data chart for an analytics app',
+];
+
 const IconGeneratorForm: React.FC<IconGeneratorFormProps> = ({ onGenerate, isLoading }) => {
   const [prompt, setPrompt] = useState<string>('');
   const [batchSize, setBatchSize] = useState<number>(8);
@@ -26,6 +36,13 @@ const IconGeneratorForm: React.FC<IconGeneratorFormProps> = ({ onGenerate, isLoa
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onGenerate(prompt, batchSize, style, generateVariations);
+  };
+
+  const handleExampleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedPrompt = e.target.value;
+    if (selectedPrompt) {
+      setPrompt(selectedPrompt);
+    }
   };
 
   return (
@@ -43,6 +60,22 @@ const IconGeneratorForm: React.FC<IconGeneratorFormProps> = ({ onGenerate, isLoa
           rows={3}
           disabled={isLoading}
         />
+      </div>
+
+      <div>
+        <select
+            id="example-prompts"
+            onChange={handleExampleSelect}
+            value="" // Resets to placeholder after selection
+            disabled={isLoading}
+            className="w-full p-3 bg-base-100/70 border border-base-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition duration-200 text-white cursor-pointer"
+            aria-label="Select an example prompt for inspiration"
+        >
+            <option value="" disabled>💡 Need inspiration? Select an example...</option>
+            {examplePrompts.map((p, i) => (
+                <option key={i} value={p}>{p}</option>
+            ))}
+        </select>
       </div>
 
       <div className="flex items-center gap-x-3">

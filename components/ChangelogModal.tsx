@@ -1,9 +1,17 @@
 import React from 'react';
 
-const changelogData = [
+export const changelogData = [
+    {
+    version: 'v1.4.0',
+    date: 'October 20, 2025',
+    changes: [
+      'New Feature: Added an "Inspiration" dropdown with example prompts.',
+      'Helps users overcome creative blocks by providing starting points for their icon descriptions.',
+    ],
+  },
     {
     version: 'v1.3.0',
-    date: 'July 27, 2024',
+    date: 'October 19, 2025',
     changes: [
       'Added a changelog modal to keep you updated on new features.',
       'Updated version history to reflect actual application development.',
@@ -11,7 +19,7 @@ const changelogData = [
   },
   {
     version: 'v1.2.0',
-    date: 'July 26, 2024',
+    date: 'October 19, 2025',
     changes: [
       'New Feature: Generate slight variations of a single icon concept using the new checkbox.',
       'The AI prompt is now dynamically adjusted based on the user\'s choice for more creative control.',
@@ -19,14 +27,14 @@ const changelogData = [
   },
   {
     version: 'v1.1.0',
-    date: 'July 25, 2024',
+    date: 'October 19, 2025',
     changes: [
         'Expanded batch size options to include 16 and 20 icons for larger generation jobs.',
     ],
   },
   {
     version: 'v1.0.0',
-    date: 'July 24, 2024',
+    date: 'October 19, 2025',
     changes: [
         'Initial release of the AI Icon Batch Generator.',
         'Core features include generating icons from a text prompt, selecting from various styles, and choosing batch sizes.',
@@ -61,7 +69,7 @@ const ChangelogModal: React.FC<ChangelogModalProps> = ({ isOpen, onClose }) => {
             className="text-content-200 hover:text-white transition-colors"
             aria-label="Close changelog"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="http://www.w3.org/2000/svg" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 20 20" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>

@@ -3,7 +3,8 @@ import IconGeneratorForm from './components/IconGeneratorForm';
 import IconGrid from './components/IconGrid';
 import Spinner from './components/Spinner';
 import { generateIconsBatch } from './services/geminiService';
-import ChangelogModal from './components/ChangelogModal';
+import ChangelogModal, { changelogData } from './components/ChangelogModal';
+import Logo from './components/Logo';
 
 declare var JSZip: any;
 
@@ -13,6 +14,8 @@ const App: React.FC = () => {
   const [isZipping, setIsZipping] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isChangelogOpen, setIsChangelogOpen] = useState<boolean>(false);
+
+  const currentVersion = changelogData[0]?.version;
 
   const handleGenerate = useCallback(async (prompt: string, batchSize: number, style: string, generateVariations: boolean) => {
     if (!prompt) {
@@ -84,10 +87,10 @@ const App: React.FC = () => {
       <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-secondary/20 blur-3xl -z-0" />
 
       <header className="w-full max-w-6xl mb-8 text-center z-10">
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400">
-          AI Icon Batch <span className="bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Generator</span>
-        </h1>
-        <p className="mt-4 text-lg text-content-200 max-w-2xl mx-auto">
+        <div className="flex justify-center items-center mb-4">
+          <Logo />
+        </div>
+        <p className="text-lg text-content-200 max-w-2xl mx-auto">
           Create beautiful, consistent icons for your application library in seconds.
         </p>
       </header>
@@ -148,9 +151,12 @@ const App: React.FC = () => {
       <footer className="w-full max-w-6xl mt-12 flex justify-center items-center text-center text-content-200 text-sm z-10 space-x-4">
         <span>Powered by Gemini API</span>
         <span className="text-base-300">|</span>
-        <button onClick={() => setIsChangelogOpen(true)} className="hover:text-white hover:underline transition-colors">
-          Changelog
-        </button>
+        <div className="flex items-center space-x-2">
+            <button onClick={() => setIsChangelogOpen(true)} className="hover:text-white hover:underline transition-colors">
+                Changelog
+            </button>
+            {currentVersion && <span className="bg-base-300 text-xs font-mono px-1.5 py-0.5 rounded">{currentVersion}</span>}
+        </div>
       </footer>
       <ChangelogModal isOpen={isChangelogOpen} onClose={() => setIsChangelogOpen(false)} />
     </div>
