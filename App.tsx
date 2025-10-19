@@ -12,7 +12,7 @@ const App: React.FC = () => {
   const [isZipping, setIsZipping] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleGenerate = useCallback(async (prompt: string, batchSize: number, style: string) => {
+  const handleGenerate = useCallback(async (prompt: string, batchSize: number, style: string, generateVariations: boolean) => {
     if (!prompt) {
       setError('Please enter a prompt to generate icons.');
       return;
@@ -23,7 +23,7 @@ const App: React.FC = () => {
     setGeneratedIcons([]);
 
     try {
-      const icons = await generateIconsBatch(prompt, batchSize, style);
+      const icons = await generateIconsBatch(prompt, batchSize, style, generateVariations);
       setGeneratedIcons(icons);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred.');

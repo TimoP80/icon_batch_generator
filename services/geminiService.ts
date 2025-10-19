@@ -21,10 +21,16 @@ const stylePrompts: { [key: string]: string } = {
   'isometric': 'clean, isometric 3D style',
 };
 
-export const generateIconsBatch = async (prompt: string, batchSize: number, style: string): Promise<string[]> => {
+export const generateIconsBatch = async (prompt: string, batchSize: number, style: string, generateVariations: boolean): Promise<string[]> => {
   try {
     const styleDescription = stylePrompts[style] || stylePrompts['flat'];
-    const fullPrompt = `A ${styleDescription} application icon of: "${prompt}". The icon should be simple, clean, and professional. Centered on a solid neutral colored background.`;
+    
+    let fullPrompt: string;
+    if (generateVariations) {
+      fullPrompt = `Generate slight variations of a single concept for a ${styleDescription} application icon of: "${prompt}". The core concept should be consistent across all images, but with subtle differences in angle, color shading, or minor details. All icons should be simple, clean, and professional, centered on a solid neutral colored background.`;
+    } else {
+      fullPrompt = `A ${styleDescription} application icon of: "${prompt}". The icon should be simple, clean, and professional. Centered on a solid neutral colored background.`;
+    }
     
     const apiCalls: Promise<any>[] = [];
     let remainingIcons = batchSize;

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 interface IconGeneratorFormProps {
-  onGenerate: (prompt: string, batchSize: number, style: string) => void;
+  onGenerate: (prompt: string, batchSize: number, style: string, generateVariations: boolean) => void;
   isLoading: boolean;
 }
 
-const batchSizes = [4, 8, 12];
+const batchSizes = [4, 8, 12, 16, 20];
 const styles = [
   { key: 'flat', name: 'Flat' },
   { key: 'gradient', name: 'Gradient' },
@@ -21,10 +21,11 @@ const IconGeneratorForm: React.FC<IconGeneratorFormProps> = ({ onGenerate, isLoa
   const [prompt, setPrompt] = useState<string>('');
   const [batchSize, setBatchSize] = useState<number>(8);
   const [style, setStyle] = useState<string>('flat');
+  const [generateVariations, setGenerateVariations] = useState<boolean>(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onGenerate(prompt, batchSize, style);
+    onGenerate(prompt, batchSize, style, generateVariations);
   };
 
   return (
@@ -42,6 +43,21 @@ const IconGeneratorForm: React.FC<IconGeneratorFormProps> = ({ onGenerate, isLoa
           rows={3}
           disabled={isLoading}
         />
+      </div>
+
+      <div className="flex items-center gap-x-3">
+        <input
+          id="variations-checkbox"
+          name="variations"
+          type="checkbox"
+          checked={generateVariations}
+          onChange={(e) => setGenerateVariations(e.target.checked)}
+          disabled={isLoading}
+          className="h-4 w-4 rounded border-base-300 bg-base-100/70 text-brand-primary focus:ring-brand-primary focus:ring-offset-base-200"
+        />
+        <label htmlFor="variations-checkbox" className="block text-sm font-medium leading-6 text-content-100">
+          Generate variations of a single concept
+        </label>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
