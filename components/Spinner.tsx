@@ -1,11 +1,9 @@
-
 import React from 'react';
 
 const Spinner: React.FC = () => {
   return (
-    <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-brand-primary"></div>
+    <div className="w-16 h-16 border-4 border-brand-primary border-t-transparent rounded-full animate-spin"></div>
   );
 };
 
 export default Spinner;
-   

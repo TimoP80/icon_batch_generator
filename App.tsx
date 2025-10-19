@@ -76,18 +76,22 @@ const App: React.FC = () => {
 }, [generatedIcons]);
 
   return (
-    <div className="min-h-screen bg-base-100 font-sans flex flex-col items-center p-4 sm:p-6 lg:p-8">
-      <header className="w-full max-w-6xl mb-8 text-center">
-        <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight">
-          AI Icon Batch <span className="text-brand-primary">Generator</span>
+    <div className="relative min-h-screen bg-base-100 font-sans flex flex-col items-center p-4 sm:p-6 lg:p-8 overflow-hidden">
+      {/* Background decorative blobs */}
+      <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-primary/20 blur-3xl -z-0" />
+      <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-secondary/20 blur-3xl -z-0" />
+
+      <header className="w-full max-w-6xl mb-8 text-center z-10">
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400">
+          AI Icon Batch <span className="bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Generator</span>
         </h1>
-        <p className="mt-2 text-lg text-content-200">
+        <p className="mt-4 text-lg text-content-200 max-w-2xl mx-auto">
           Create beautiful, consistent icons for your application library in seconds.
         </p>
       </header>
 
-      <main className="w-full max-w-6xl flex-grow">
-        <div className="bg-base-200 p-6 rounded-2xl shadow-2xl border border-base-300">
+      <main className="w-full max-w-6xl flex-grow z-10">
+        <div className="bg-base-200/50 backdrop-blur-lg p-6 rounded-2xl shadow-2xl border border-white/10">
           <IconGeneratorForm onGenerate={handleGenerate} isLoading={isLoading} />
         </div>
 
@@ -95,10 +99,10 @@ const App: React.FC = () => {
           {isLoading ? (
             <div className="flex flex-col items-center justify-center text-center p-10">
               <Spinner />
-              <p className="mt-4 text-lg text-content-100 font-medium">Generating your icons... this can take a moment.</p>
+              <p className="mt-4 text-lg text-content-100 font-medium">Brewing up a fresh batch of icons...</p>
             </div>
           ) : error ? (
-            <div className="flex items-center justify-center text-center p-10 bg-red-900/20 border border-red-500 rounded-lg">
+            <div className="flex items-center justify-center text-center p-10 bg-gradient-to-b from-red-900/50 to-transparent border border-red-500/50 rounded-lg">
               <p className="text-red-400 font-semibold">{error}</p>
             </div>
           ) : generatedIcons.length > 0 ? (
@@ -130,13 +134,16 @@ const App: React.FC = () => {
               <IconGrid icons={generatedIcons} />
             </>
           ) : (
-             <div className="text-center p-10 border-2 border-dashed border-base-300 rounded-lg">
+             <div className="text-center p-10 border-2 border-dashed border-base-300 rounded-lg flex flex-col items-center justify-center space-y-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-base-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
                 <p className="text-content-200">Your generated icons will appear here.</p>
              </div>
           )}
         </div>
       </main>
-      <footer className="w-full max-w-6xl mt-12 text-center text-content-200 text-sm">
+      <footer className="w-full max-w-6xl mt-12 text-center text-content-200 text-sm z-10">
         <p>Powered by Gemini API</p>
       </footer>
     </div>

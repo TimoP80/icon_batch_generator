@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface IconCardProps {
@@ -24,16 +23,16 @@ const IconCard: React.FC<IconCardProps> = ({ src, index }) => {
   };
 
   return (
-    <div className="group relative aspect-square bg-base-300 rounded-lg overflow-hidden shadow-lg border border-transparent hover:border-brand-primary transition-all duration-300">
+    <div className="group relative aspect-square bg-base-300 rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-brand-primary/20">
       <img
         src={src}
         alt={`Generated Icon ${index + 1}`}
-        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        className="w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <button
           onClick={handleDownload}
-          className="flex items-center bg-white text-base-100 px-4 py-2 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors"
+          className="flex items-center bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-black/60 transition-colors"
         >
           <DownloadIcon />
           Download
@@ -44,4 +43,3 @@ const IconCard: React.FC<IconCardProps> = ({ src, index }) => {
 };
 
 export default IconCard;
-   
