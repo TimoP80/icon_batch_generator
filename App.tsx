@@ -3,6 +3,7 @@ import IconGeneratorForm from './components/IconGeneratorForm';
 import IconGrid from './components/IconGrid';
 import Spinner from './components/Spinner';
 import { generateIconsBatch } from './services/geminiService';
+import ChangelogModal from './components/ChangelogModal';
 
 declare var JSZip: any;
 
@@ -11,6 +12,7 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isZipping, setIsZipping] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [isChangelogOpen, setIsChangelogOpen] = useState<boolean>(false);
 
   const handleGenerate = useCallback(async (prompt: string, batchSize: number, style: string, generateVariations: boolean) => {
     if (!prompt) {
@@ -143,9 +145,14 @@ const App: React.FC = () => {
           )}
         </div>
       </main>
-      <footer className="w-full max-w-6xl mt-12 text-center text-content-200 text-sm z-10">
-        <p>Powered by Gemini API</p>
+      <footer className="w-full max-w-6xl mt-12 flex justify-center items-center text-center text-content-200 text-sm z-10 space-x-4">
+        <span>Powered by Gemini API</span>
+        <span className="text-base-300">|</span>
+        <button onClick={() => setIsChangelogOpen(true)} className="hover:text-white hover:underline transition-colors">
+          Changelog
+        </button>
       </footer>
+      <ChangelogModal isOpen={isChangelogOpen} onClose={() => setIsChangelogOpen(false)} />
     </div>
   );
 };
