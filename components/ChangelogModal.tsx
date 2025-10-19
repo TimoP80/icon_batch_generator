@@ -2,6 +2,14 @@ import React from 'react';
 
 export const changelogData = [
     {
+    version: 'v1.5.0',
+    date: 'October 21, 2025',
+    changes: [
+      'Fixed a critical bug where the application logo was broken due to an incomplete image data string.',
+      'Improvement: Replaced the previous logo implementation with a scalable and self-contained SVG for better performance and reliability.',
+    ],
+  },
+    {
     version: 'v1.4.0',
     date: 'October 20, 2025',
     changes: [

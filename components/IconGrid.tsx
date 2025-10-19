@@ -17,4 +17,3 @@ const IconGrid: React.FC<IconGridProps> = ({ icons }) => {
 };
 
 export default IconGrid;
-   
